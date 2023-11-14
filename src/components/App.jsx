@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   StyledTitle,
   StyledText,
@@ -7,8 +7,16 @@ import {
 import { ContactForm } from './Phonebook/ContactForm';
 import { ContactList } from './Phonebook/ContactList';
 import { Filter } from './Phonebook/Filter';
+import { useDispatch } from 'react-redux';
+import { fetchContacts } from 'services/api';
 
 const Phonebook = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
     <StyledWrap>
       <StyledTitle>Phonebook</StyledTitle>
